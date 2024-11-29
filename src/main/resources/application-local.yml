@@ -1,0 +1,15 @@
+
+logging:
+  level:
+    root: trace
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: auth_rout
+          uri: https://google.com
+          predicates:
+            - Path=/auth/**
+          filters:
+            - RewritePath=/auth/?(?<segment>.*), /$\{segment}
