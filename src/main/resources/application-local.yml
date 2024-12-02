@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: debug
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: auth_route
+          uri: ${AUTH_SERVER}
+          predicates:
+            - Path=/auth/**
+          filters:
+            - RewritePath=/auth/?(?<segment>.*), /$\{segment}

@@ -9,5 +9,4 @@ public class VeticoGatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(VeticoGatewayApplication.class, args);
     }
-
 }
