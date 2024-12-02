@@ -10,7 +10,7 @@ spring:
     gateway:
       routes:
         - id: auth_route
-          uri: ${AUTH_SERVER:localhost:9000}
+          uri: ${AUTH_SERVER}
           predicates:
             - Path=/auth/**
           filters:
