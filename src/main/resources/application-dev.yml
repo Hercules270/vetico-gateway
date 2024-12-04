@@ -6,12 +6,27 @@ logging:
     root: debug
 
 spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          spring:
+            issuer-uri: auth-server
+        registration:
+          gateway-client:
+            provider: spring
+            client-id: gateway
+            client-secret: Gateway1!
+            scope:
+              - openid
+            post_logout_url: ${POST_LOGOUT_URL}
   cloud:
     gateway:
       routes:
-        - id: auth_route
-          uri: ${AUTH_SERVER}
+        - id: apple
+          uri: https://apple.com
           predicates:
-            - Path=/auth/**
+            - Path=/apple/**
           filters:
+            - TokenRelay=
             - RewritePath=/auth/?(?<segment>.*), /$\{segment}
